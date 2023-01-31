@@ -1,0 +1,497 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    color: var(--white);
+    letter-spacing: .125rem;
+}
+/* colors */
+:root{   
+    --Scissors : hsl(39, 89%, 49%);
+    --scissors2 : hsl(40, 84%, 53%);
+    --Paper : hsl(230, 89%, 62%);
+    --paper2 : hsl(230, 89%, 65%);
+    --Rock : hsl(349, 71%, 52%);
+    --rock2 : hsl(349, 70%, 56%);
+    --Lizard : hsl(261, 73%, 60%);
+    --lizard2 : hsl(261, 72%, 63%);
+    --spoke: hsl(189, 59%, 53%);
+    --spoke2 : hsl(189, 58%, 57%);
+    --Dark : hsl(229, 25%, 31%);
+    --Score : hsl(229, 64%, 46%);
+    --outline: hsl(217, 16%, 45%);
+    --rbg1: hsl(214, 47%, 23%);
+    --rbg2: hsl(237, 49%, 15%);
+    --white: rgba(255, 255, 255, 0.8);
+    --pureWhite: #fff;
+    --fw1: 600;
+    --fw2: 700;
+    --radius: .75rem;
+}
+
+.container{
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(0deg, hsl(237, 49%, 15%), hsl(214, 47%, 23%));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* scores part */
+.heading{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border: 5px solid var(--outline);
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 35rem;
+}
+.logo{
+    background-image: url(./images/logo.svg);
+    background-position: center;
+    background-size: contain;
+    height: 99px;
+    width: 162px;
+}
+/* ______________bonus logo_________________ */
+.logo2{
+    background-image: url(./images/logo-bonus.svg);
+    background-repeat: no-repeat;  
+    height: 114px;
+    width: 115px;
+}
+
+.score-wrapper{
+    background-color: var(--white);
+    border-radius: var(--radius);
+    padding: .75rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+}
+.score-wrapper p{
+    font-size: .75rem;
+    font-weight: var(--fw1);
+    color: var(--Dark);
+    letter-spacing: .1rem;
+}
+.score{
+    font-size: 2.95rem;
+    font-weight: var(--fw2);
+    color: var(--Dark);
+}
+
+/* picks part */
+.section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    max-width: 50rem;
+    justify-content: center;
+}
+.pick-container{
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+}
+.pick{
+    display: grid;
+    grid-template-columns: repeat(2, 15rem);
+    place-items: center;
+    justify-content: center;
+    width: 100%;
+    background: url(./images/bg-triangle.svg) no-repeat center;
+    background-size: 10rem;
+}
+.picks{
+    cursor: pointer;
+}
+.scissors{
+    grid-column: 1/2;
+}
+.rock{
+    grid-column: 2/3;
+}
+.paper{
+    grid-column: span 2;
+}
+
+/* ______________bonus_________________ */
+.pick2{
+    grid-template-columns: repeat(4, 7.5rem);
+    background: url(./images/bg-pentagon.svg) no-repeat center;
+    background-size: 14rem;
+}
+.scissors2{
+    grid-column: span 4;
+}
+.spoke{
+    grid-column: span 2;
+}
+.paper2{
+    grid-column: span 2;
+}
+.lizard{
+    grid-column: 2/3;
+}
+.rock2{
+    grid-column: 3/4;
+}
+
+.pick-wrapper{
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    height: 100%;
+    width: 100%;
+}
+.mypick-wrapper, 
+.house-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+.mypick-wrapper{
+    grid-column: 1/2;
+}
+.house-wrapper{
+    grid-column: 2/3;
+}
+
+.house{
+    height: 7.5rem;
+    width: 7.5rem;
+    background-color: var(--Dark);
+    border-radius: 50%;
+}
+
+/* result-section */
+.results-wrapper{
+    grid-column: span 2;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    transform: translateX(-100%);
+    pointer-events: none;
+    transition: opacity 500ms ease-in-out;
+}
+.result{
+    font-size: 3rem;
+    font-weight: var(--fw1);
+}
+.play-again{
+    color: var(--Dark);
+    font-size: 1.1rem;
+    font-weight: var(--fw1);
+    padding: .65em 0;
+    border-radius: var(--radius);
+    width: 12rem;
+    cursor: pointer;
+    border: none;
+}
+.rock,
+.paper,
+.scissors
+{
+    height: 7.5rem;
+    width: 7.5rem;
+    background-color: var(--white);
+    border-radius: 50%;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.rock{
+    background-image: url(./images/icon-rock.svg);
+    border: .85rem solid var(--Rock);
+    box-shadow: inset 0 2px 5px var(--outline),
+                      0 4px 1px var(--rock2);
+}
+.paper{
+    background-image: url(./images/icon-paper.svg);
+    border: .85rem solid var(--Paper);
+    box-shadow: inset 0 2px 5px var(--outline),
+                      0 4px 1px var(--paper2);
+}
+.scissors{
+    background-image: url(./images/icon-scissors.svg);
+    border: .85rem solid var(--Scissors);
+    box-shadow: inset 0 2px 5px var(--outline),
+                      0 4px 1px var(--scissors2);
+}
+
+/* ______________bonus_________________ */
+.rock2,
+.paper2,
+.scissors2,
+.lizard,
+.spoke
+{
+    height: 5.5rem;
+    width: 5.5rem;
+    background-color: var(--white);
+    border-radius: 50%;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.rock2{
+    background-image: url(./images/icon-rock.svg);
+    border: .65rem solid var(--Rock);
+    box-shadow: inset 0 2px 5px var(--outline),
+                      0 4px 1px var(--rock2);
+}
+.paper2{
+    background-image: url(./images/icon-paper.svg);
+    border: .65rem solid var(--Paper);
+    box-shadow: inset 0 2px 5px var(--outline),
+                      0 4px 1px var(--paper2);
+}
+.scissors2{
+    background-image: url(./images/icon-scissors.svg);
+    border: .65rem solid var(--Scissors);
+    box-shadow: inset 0 2px 5px var(--outline),
+                      0 4px 1px var(--scissors2);
+}
+.spoke{
+    background-image: url(./images/icon-spock.svg);
+    border: .65rem solid var(--spoke);
+    box-shadow: inset 0 2px 5px var(--outline),
+                      0 4px 1px var(--spoke2);
+}
+.lizard{
+    background-image: url(./images/icon-lizard.svg);
+    border: .65rem solid var(--Lizard);
+    box-shadow: inset 0 2px 5px var(--outline),
+                      0 4px 1px var(--lizard2);
+}
+
+.rules{
+    font-size: 1.2rem;
+    border: 2px solid var(--white);
+    background-color: transparent;
+    color: var(--white);
+    width: max-content;
+    padding: .5rem 1em;
+    border-radius: var(--radius);
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+
+.rules-wrapper{
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+.rules-container{
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    place-items: center;
+    padding: 0 1.5rem;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--pureWhite);
+    position: relative;
+    z-index: 2;
+}
+.rules-container h2{
+    font-size: 1.5rem;
+    color: var(--Dark);
+    grid-row: 1/2;
+}
+.rules-card{
+    height: 90%;
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+    margin: 2rem 0;
+    max-width: 500px;
+}
+
+/* js css */
+.cancel{
+    background-image: url(./images/icon-close.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+}
+
+.hide{
+    display: none;
+}
+.show{
+    display: flex;
+}
+.grid{
+    display: grid;
+}
+.show-results{
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto; 
+}
+.index{
+    position: absolute;
+}
+
+
+/* ================================================================
+                desktop screen
+================================================================ */
+
+@media screen and (min-width: 800px) {
+    .score-wrapper{
+        padding: .75rem 2rem;
+    } 
+    .pick-wrapper{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .mypick-wrapper, 
+    .house-wrapper{
+        flex-direction: column-reverse;
+        gap: 3rem;
+    }
+    .mypick-wrapper{
+        grid-column: 1/2;
+    }
+    /* result-section */
+    .results-wrapper{
+        grid-column: 2/3;
+        grid-row: 1/2;
+        gap: .5rem;
+    }
+    .result{
+        font-size: 2.5rem;
+    }
+
+    .house-wrapper{
+        grid-column: 3/4;
+    }
+    
+    .house{
+        height: 7.5rem;
+        width: 7.5rem;
+        background-color: var(--Dark);
+        border-radius: 50%;
+    }
+    
+    .house{
+        height: 11rem;
+        width: 11rem;
+    }
+    .rock,
+    .paper,
+    .scissors
+    {
+        height: 11rem;
+        width: 11rem;
+        background-color: var(--white);
+        border-radius: 50%;
+        background-size: 50%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .rock{
+        border: 1.15rem solid var(--Rock);
+    }
+    .paper{
+        border: 1.15rem solid var(--Paper);
+    }
+    .scissors{
+        border: 1.15rem solid var(--Scissors);
+    }
+
+    /* ______________bonus_________________ */
+    /* ______________bonus_________________ */
+    .rock2,
+    .paper2,
+    .scissors2,
+    .lizard,
+    .spoke
+    {
+        height: 9rem;
+        width: 9rem;
+        background-color: var(--white);
+        border-radius: 50%;
+        background-size: 50%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .pick2{
+        grid-template-columns: repeat(4, 12rem);
+        background: url(./images/bg-pentagon.svg) no-repeat center;
+        background-size: 20rem;
+    }
+    .rock2{
+        border: .95rem solid var(--Rock);
+    }
+    .paper2{
+        border: .95rem solid var(--Paper);
+    }
+    .scissors2{
+        border: .95rem solid var(--Scissors);
+    }
+    .spoke{
+        border: .95rem solid var(--spoke);
+    }
+    .lizard{
+        border: .95rem solid var(--Lizard);
+    }
+
+    /* ____________________btn_section__________________________ */
+    
+    .rules{
+        position: absolute;
+        bottom: 2rem;right: 2rem;
+        padding: .5rem 1.25em;
+    }
+
+    .rules-container{
+        height: 25rem;
+        width: 25rem;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        border-radius: var(--radius);
+        padding: 0;
+    }
+    .rules-container h2{
+        grid-column: 1/2;
+        position: absolute;
+        left: 2rem;
+        top: 2rem;
+    }
+    .cancel{
+        grid-row: 1/2;
+        grid-column: 2/3;
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+    .rules-card{
+        grid-row: 2/3;
+        grid-column: span 2;
+        height: 16.5rem;
+        width: 22rem;
+        margin: 2rem 0;
+        max-width: 500px;
+    }
+    
+}

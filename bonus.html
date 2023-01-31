@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <script src="bonus.js" type="module"></script>
+  <title>Frontend Mentor | Rock, Paper, Scissors</title> 
+</head>
+<body>
+  <div class="container">
+    <div class="heading">
+      <div class="logo logo2"></div>
+      <div class="score-wrapper">
+        <p>score</p>
+        <h2 class="score">0</h2>
+      </div>
+    </div>
+    <main class="section">
+      <div class="pick-container">
+        <div class="pick pick2">
+          <div class="picks scissors scissors2"></div>
+          <div class="picks spoke"></div>
+          <div class="picks paper paper2"></div>
+          <div class="picks lizard"></div>
+          <div class="picks rock rock2"></div>
+        </div>
+      </div>
+      <div class="pick-wrapper">
+        <div class="mypick-wrapper">
+          <div class="mypick round"></div>
+          <h4>you picked</h4>
+        </div>
+        <div class="house-wrapper">
+          <div class="house"></div>
+          <h4>the house picked</h4>
+        </div>
+        <div class="results-wrapper">
+          <h1 class="result"></h1>
+          <button class="play-again">play again</button>
+        </div>
+      </div>
+      <button class="rules">rules</button>
+    </main>
+  </div>
+  <div class="rules-wrapper hide">
+    <div class="rules-container">
+      <h2>rules</h2>
+      <img src="./images/image-rules-bonus.svg" alt="" class="rules-card">
+      <div class="cancel"></div>
+    </div>
+  </div>
+</body>
+</html>
